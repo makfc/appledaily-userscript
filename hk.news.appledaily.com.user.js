@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        hk.news.appledaily.com Subscription Bypass
 // @namespace   Violentmonkey Scripts
-// @match       https://*appledaily.com/*
+// @match       https://*appledaily.com*
 // @grant       none
 // @run-at      document-start
 // ==/UserScript==
