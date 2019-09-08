@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        appledaily.com Subscription Bypass
+// @name        hk.news.appledaily.com Subscription Bypass
 // @namespace   Violentmonkey Scripts
 // @match       https://*appledaily.com/*
 // @grant       none
@@ -15,7 +15,8 @@
             addedNodes.forEach(node => {
                 // For each added script tag
                 if (node.nodeType === 1 && node.tagName === 'SCRIPT') {
-                    if (node.innerHTML.includes('uReadDisplayMsgBox') || node.innerHTML.includes('uReadPrompt')) { //  
+                    if (node.innerHTML.includes('uReadDisplayMsgBox') ||
+                        node.innerHTML.includes('function isOMOureadEnable')) {
                         console.log(node);
                         // Blocks the script tag execution in Safari, Chrome, Edge & IE
                         node.type = 'javascript/blocked'
@@ -24,13 +25,13 @@
                         const beforeScriptExecuteListener = function(event) {
                             // Prevent only marked scripts from executing
                             if (node.getAttribute('type') === 'javascript/blocked')
-                                event.preventDefault()
-                            node.removeEventListener('beforescriptexecute', beforeScriptExecuteListener)
+                                event.preventDefault();
+                            node.removeEventListener('beforescriptexecute', beforeScriptExecuteListener);
                         }
-                        node.addEventListener('beforescriptexecute', beforeScriptExecuteListener)
+                        node.addEventListener('beforescriptexecute', beforeScriptExecuteListener);
 
                         // Unnecessary, but cleaner: remove the node from the DOM
-                        node.parentElement.removeChild(node)
+                        node.parentElement.removeChild(node);
                     }
                     // const src = node.src || ''
                     // const type = node.type
