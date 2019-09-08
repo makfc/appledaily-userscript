@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name        hk.news.appledaily.com Subscription Bypass
+// @name        appledaily.com Subscription Bypass
 // @namespace   Violentmonkey Scripts
-// @match       https://hk.news.appledaily.com/*
+// @match       https://*appledaily.com/*
 // @grant       none
 // @run-at      document-start
 // ==/UserScript==
@@ -15,7 +15,7 @@
             addedNodes.forEach(node => {
                 // For each added script tag
                 if (node.nodeType === 1 && node.tagName === 'SCRIPT') {
-                    if (node.innerHTML.includes('uReadDisplayMsgBox') || node.innerHTML.includes('uReadPrompt')) {
+                    if (node.innerHTML.includes('uReadDisplayMsgBox') || node.innerHTML.includes('uReadPrompt')) { //  
                         console.log(node);
                         // Blocks the script tag execution in Safari, Chrome, Edge & IE
                         node.type = 'javascript/blocked'
