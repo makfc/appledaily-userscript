@@ -1,7 +1,10 @@
 // ==UserScript==
 // @name        hk.news.appledaily.com Subscription Bypass
 // @namespace   Violentmonkey Scripts
+// @version     0.1
 // @match       https://*appledaily.com/*
+// @author      makfc
+// @downloadURL https://raw.githubusercontent.com/makfc/appledaily-userscript/master/hk.news.appledaily.com.user.js
 // @grant       none
 // @run-at      document-start
 // ==/UserScript==
