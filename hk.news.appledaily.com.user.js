@@ -36,13 +36,6 @@
                         // Unnecessary, but cleaner: remove the node from the DOM
                         node.parentElement.removeChild(node);
                     }
-                    // const src = node.src || ''
-                    // const type = node.type
-                    // If the src is inside your blacklist
-                    // if (needsToBeBlacklisted(src, type)) {
-                    //     // Do some stuff that will prevent the script tag loading ;)
-                    //     // (See below…)
-                    // }
                 }
             })
         })
