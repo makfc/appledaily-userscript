@@ -53,7 +53,7 @@
 
 })();
 
-// Old way
+// Old ways
 // var stop = false;
 
 // window.onload = function() {
