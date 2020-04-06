@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        hk.news.appledaily.com Subscription Bypass
 // @namespace   Violentmonkey Scripts
-// @version     0.2
+// @version     0.3
 // @match       https://*appledaily.com/*
 // @author      makfc
 // @downloadURL https://raw.githubusercontent.com/makfc/appledaily-userscript/master/hk.news.appledaily.com.user.js
@@ -20,7 +20,8 @@
                 if (node.nodeType === 1 && node.tagName === 'SCRIPT') {
                     if (node.innerHTML.includes('uReadDisplayMsgBox') ||
                         node.innerHTML.includes('function isOMOureadEnable') ||
-                        node.innerHTML.includes('function blockContent')) {
+                        node.innerHTML.includes('function blockContent')
+                    ) {
                         console.log(node);
                         // Blocks the script tag execution in Safari, Chrome, Edge & IE
                         node.type = 'javascript/blocked'
@@ -38,35 +39,70 @@
                         node.parentElement.removeChild(node);
                     }
                 }
+
+                // if (node.nodeType === 1 && node.tagName === 'DIV') {
+                //     console.log(node);
+                //     if (node.id === "articleBody") {
+                //         node.removeAttribute("style");
+                //     }
+                // }
             })
         })
     })
 
     // Starts the monitoring
     observer.observe(document.documentElement, {
+        // attributes: true,
+        // characterData: true,
         childList: true,
-        subtree: true
+        subtree: true,
+        // attributeOldValue: true,
+        // characterDataOldValue: true
     })
 
 })();
 
 // Old ways
-// var stop = false;
+var stop = false;
 
-// window.onload = function() {
-//     stop = true;
-//     console.log("window.onload");
-// }
+window.onload = function () {
+    console.log("window.onload");
+    setTimeout(() => {
+        stop = true;
+        console.log("stop = true;");
+    }, 1000);
+}
 
 
-// function main() {
-//     uReadDisplayMsgBox = () => {};
-//     OMOureadEnable = false;
-//     console.log("OMOureadEnable: " + OMOureadEnable);
-//     if (stop) {
-//         return;
-//     }
-//     setTimeout(main, 200);
-// }
+function main() {
+    // uReadDisplayMsgBox = () => {};
+    // OMOureadEnable = false;
+    // console.log("OMOureadEnable: " + OMOureadEnable);
+    let eletment = document.getElementById("articleBody");
+    if (!!eletment) {
+        eletment.removeAttribute("style");
+    }
+    eletment = document.getElementsByClassName("authors-grid")[0];
+    if (!!eletment) {
+        eletment.removeAttribute("style");
+    }
+    eletment = document.getElementsByClassName("paywall_fade")[0];
+    if (!!eletment) {
+        eletment.remove();
+    }
+    eletment = document.getElementsByClassName("hk-paywall-container")[0];
+    if (!!eletment) {
+        eletment.remove();
+    }
+    eletment = document.getElementById("articleOmo");
+    if (!!eletment) {
+        eletment.remove();
+    }
 
-// main();
+    if (stop) {
+        return;
+    }
+    setTimeout(main, 200);
+}
+
+main();
