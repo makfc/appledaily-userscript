@@ -9,12 +9,12 @@
 // @run-at      document-start
 // ==/UserScript==
 
-(function() {
+(function () {
     'use strict';
 
     // From: https://medium.com/snips-ai/how-to-block-third-party-scripts-with-a-few-lines-of-javascript-f0b08b9c4c0
     const observer = new MutationObserver(mutations => {
-        mutations.forEach(({ addedNodes }) => {
+        mutations.forEach(({addedNodes}) => {
             addedNodes.forEach(node => {
                 // For each added script tag
                 if (node.nodeType === 1 && node.tagName === 'SCRIPT') {
@@ -26,7 +26,7 @@
                         node.type = 'javascript/blocked'
 
                         // Firefox has this additional event which prevents scripts from beeing executed
-                        const beforeScriptExecuteListener = function(event) {
+                        const beforeScriptExecuteListener = function (event) {
                             // Prevent only marked scripts from executing
                             if (node.getAttribute('type') === 'javascript/blocked')
                                 event.preventDefault();
