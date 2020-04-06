@@ -19,7 +19,8 @@
                 // For each added script tag
                 if (node.nodeType === 1 && node.tagName === 'SCRIPT') {
                     if (node.innerHTML.includes('uReadDisplayMsgBox') ||
-                        node.innerHTML.includes('function isOMOureadEnable')) {
+                        node.innerHTML.includes('function isOMOureadEnable') ||
+                        node.innerHTML.includes('function blockContent')) {
                         console.log(node);
                         // Blocks the script tag execution in Safari, Chrome, Edge & IE
                         node.type = 'javascript/blocked'
